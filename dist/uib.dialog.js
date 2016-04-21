@@ -48,7 +48,7 @@
                             '<button type="button" class="close uibDialogClose" ng-click="cancel()" ng-show="config.close">&times;</button>'+
                         '</div>'+
                         '<div class="modal-body uibDialogBody">'+
-                            '<div class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></div>'+
+                            '<p class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></p>'+
                         '</div>'+
                         '<div class="modal-footer uibDialogFooter">'+
                             '<button class="btn btn-primary uibDialogOk" type="button" ng-click="ok()" ng-if="config.ok" ng-bind="config.ok"></button>'+
@@ -61,7 +61,7 @@
                             '<button type="button" class="close" ng-click="cancel()" ng-show="config.close">&times;</button>'+
                         '</div>'+
                         '<div class="modal-body uibDialogBody">'+
-                            '<div class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></div>'+
+                            '<p class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></p>'+
                             '<textarea class="form-control uibDialogInputTextarea" ng-model="output" autofocus></textarea>'+
                         '</div>'+
                         '<div class="modal-footer uibDialogFooter">'+
@@ -75,7 +75,7 @@
                             '<button type="button" class="close" ng-click="cancel()" ng-show="config.close">&times;</button>'+
                         '</div>'+
                         '<div class="modal-body uibDialogBody">'+
-                            '<div class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></div>'+
+                            '<p class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></p>'+
                             '<input class="form-control uibDialogInputText" ng-model="output" autofocus />'+
                         '</div>'+
                         '<div class="modal-footer uibDialogFooter">'+
