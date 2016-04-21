@@ -9,7 +9,16 @@
 'use strict';
 
 (function () {
-  var module = angular.module("uib.dialog", []);
+  var dependencies = [];
+  var hasSanitize = false;
+
+  try {
+      angular.module('ngSanitize');
+      dependencies.push('ngSanitize');
+      hasSanitize = true;
+  } catch(e){}
+
+  var module = angular.module("uib.dialog", dependencies);
 
     /**
      * Service uibDialog is injected to provide the functions to display
@@ -39,10 +48,7 @@
                             '<button type="button" class="close uibDialogClose" ng-click="cancel()" ng-show="config.close">&times;</button>'+
                         '</div>'+
                         '<div class="modal-body uibDialogBody">'+
-                            '<span ng-switch="config.html">'+
-                            '<div ng-switch-when="true" class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind-html="message"></div>'+
-                            '<div ng-switch-default class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></div>'+
-                            '</span>'+
+                            '<div class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></div>'+
                         '</div>'+
                         '<div class="modal-footer uibDialogFooter">'+
                             '<button class="btn btn-primary uibDialogOk" type="button" ng-click="ok()" ng-if="config.ok" ng-bind="config.ok"></button>'+
@@ -55,10 +61,7 @@
                             '<button type="button" class="close" ng-click="cancel()" ng-show="config.close">&times;</button>'+
                         '</div>'+
                         '<div class="modal-body uibDialogBody">'+
-                            '<span ng-switch="config.html">'+
-                            '<div ng-switch-when="true" class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind-html="message"></div>'+
-                            '<div ng-switch-default class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></div>'+
-                            '</span>'+
+                            '<div class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></div>'+
                             '<textarea class="form-control uibDialogInputTextarea" ng-model="output" autofocus></textarea>'+
                         '</div>'+
                         '<div class="modal-footer uibDialogFooter">'+
@@ -72,10 +75,7 @@
                             '<button type="button" class="close" ng-click="cancel()" ng-show="config.close">&times;</button>'+
                         '</div>'+
                         '<div class="modal-body uibDialogBody">'+
-                            '<span ng-switch="config.html">'+
-                            '<div ng-switch-when="true" class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind-html="message"></div>'+
-                            '<div ng-switch-default class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></div>'+
-                            '</span>'+
+                            '<div class="uibDialogMessage text-center" ng-class="{\'text-danger\' : config.danger}" ng-bind="message"></div>'+
                             '<input class="form-control uibDialogInputText" ng-model="output" autofocus />'+
                         '</div>'+
                         '<div class="modal-footer uibDialogFooter">'+
@@ -93,6 +93,7 @@
           keyboard: true,
           ok: 'OK',
           cancel: 'Cancel',
+          html: hasSanitize,
           alert: {
             cancel: false
           },
@@ -143,7 +144,7 @@
       if (typeof singleConfig === 'boolean') { tempConfig.danger = singleConfig; }
       var modalInstance = $modal.open({
           animation: tempConfig.animation,
-          template: template,
+          template: tempConfig.html ? template.replace(/ng-bind/g, 'ng-bind-html') : template,
           controller: 'UibDialogController',
           size: tempConfig.size,
           backdrop: tempConfig.backdrop,
@@ -166,7 +167,7 @@
       else if (typeof singleConfig === 'number') { tempConfig.autoclose = singleConfig; }
       var modalInstance = $modal.open({
           animation: tempConfig.animation,
-          template: template,
+          template: tempConfig.html ? template.replace(/ng-bind/g, 'ng-bind-html') : template,
           controller: 'UibDialogController',
           size: tempConfig.size,
           backdrop: tempConfig.backdrop,
@@ -188,7 +189,7 @@
       if (typeof singleConfig === 'boolean') { tempConfig.danger = singleConfig; }
       var modalInstance = $modal.open({
           animation: tempConfig.animation,
-          template: template,
+          template: tempConfig.html ? template.replace(/ng-bind/g, 'ng-bind-html') : template,
           controller: 'UibDialogController',
           size: tempConfig.size,
           backdrop: tempConfig.backdrop,
@@ -210,7 +211,7 @@
       if (typeof singleConfig === 'boolean') { tempConfig.danger = singleConfig; }
       var modalInstance = $modal.open({
           animation: tempConfig.animation,
-          template: templateInput,
+          template: tempConfig.html ? templateInput.replace(/ng-bind/g, 'ng-bind-html') : templateInput,
           controller: 'UibDialogController',
           size: tempConfig.size,
           backdrop: tempConfig.backdrop,
@@ -232,7 +233,7 @@
       if (typeof singleConfig === 'boolean') { tempConfig.danger = singleConfig; }
       var modalInstance = $modal.open({
           animation: tempConfig.animation,
-          template: templateTextarea,
+          template: tempConfig.html ? templateTextarea.replace(/ng-bind/g, 'ng-bind-html') : templateTextarea,
           controller: 'UibDialogController',
           size: tempConfig.size,
           backdrop: tempConfig.backdrop,
