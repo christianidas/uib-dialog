@@ -42,42 +42,76 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-sm-7">
+		<div class="col-sm-12">
+			<div class="page-header">
+				<h1>Getting Started <small></small></h1>
+			</div>
+		</div>
+		<div class="col-sm-12">
+			<div class="page-header">
+				<h3>Installation <small></small></h3>
+			</div>
+			<p>As soon as you've got all the files downloaded and included in your page you just need to declare a dependency on the <code>uib.dialog</code> module:</p>
+			<p>You need to make sure to include <code>ui.bootstrap</code> into your dependencies.</p>
+			<p class="text-warning">Also, be sure to include <code>ngAnimate</code> as well if you plan on using animations.</p>
+			<pre>angular.module('myModule', ['ui.bootstrap', 'uib.dialog']);</pre>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
 			<div class="page-header">
 				<h1>Alert <small></small></h1>
 			</div>
+		</div>
+		<div class="col-sm-6">
 			<pre>uibDialog.alert(message, [config])</pre>
 			<p>Use this for a standard alert message.</p>
 			<button class="btn btn-primary" ng-click="alert('I am an alert!')">Alert</button>
 		</div>
-		<div class="col-sm-7">
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
 			<div class="page-header">
 				<h1>Auto Close Alert <small></small></h1>
 			</div>
+		</div>
+		<div class="col-sm-6">
 			<pre>uibDialog.autoCloseAlert(message, [config])</pre>
 			<p>Use this for an alert message which auto closes after 3 seconds (by default).</p>
 			<button class="btn btn-primary" ng-click="autoCloseAlert('I will close in 3 seconds!')">Auto Close Alert</button>
 		</div>
-		<div class="col-sm-7">
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
 			<div class="page-header">
 				<h1>Confirm <small></small></h1>
 			</div>
+		</div>
+		<div class="col-sm-6">
 			<pre>uibDialog.confirm(message, [config])</pre>
 			<p>Use this for a confirmation prompt.</p>
 			<button class="btn btn-primary" ng-click="confirm('Please Confirm!')">Confirm</button>
 		</div>
-		<div class="col-sm-7">
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
 			<div class="page-header">
 				<h1>Prompt <small></small></h1>
 			</div>
+		</div>
+		<div class="col-sm-6">
 			<pre>uibDialog.prompt(message, [config])</pre>
 			<p>Use this for a prompt for some text.</p>
 			<button class="btn btn-primary" ng-click="prompt('What is your name?')">Prompt</button>
 		</div>
-		<div class="col-sm-7">
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
 			<div class="page-header">
 				<h1>Prompt Box <small></small></h1>
 			</div>
+		</div>
+		<div class="col-sm-6">
 			<pre>uibDialog.promptBox(message, [config])</pre>
 			<p>Use this for a prompt for some text using textarea for multiline.</p>
 			<button class="btn btn-primary" ng-click="promptBox('Whats on your mind?')">Prompt Box</button>
