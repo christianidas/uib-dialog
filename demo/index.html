@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<meta name="mobile-web-app-capable" content="yes">
+	<title>uib-dialog</title>
+	
+   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.js"></script>
+	
+	<script src="app.js"></script>
+	<script src="../dist/uib.dialog.js"></script>
+	
+</head>
+<!-- index.html -->
+<body ng-app="uibDialogDemo" ng-cloak ng-controller="MainController">
+
+<nav class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" ng-class="" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">uib-dialog</a>
+		</div>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-7">
+			<div class="page-header">
+				<h1>Alert <small></small></h1>
+			</div>
+			<pre>uibDialog.alert(message, [config])</pre>
+			<p>Use this for a standard alert message.</p>
+			<button class="btn btn-primary" ng-click="alert('I am an alert!')">Alert</button>
+		</div>
+		<div class="col-sm-7">
+			<div class="page-header">
+				<h1>Auto Close Alert <small></small></h1>
+			</div>
+			<pre>uibDialog.autoCloseAlert(message, [config])</pre>
+			<p>Use this for an alert message which auto closes after 3 seconds (by default).</p>
+			<button class="btn btn-primary" ng-click="autoCloseAlert('I will close in 3 seconds!')">Auto Close Alert</button>
+		</div>
+		<div class="col-sm-7">
+			<div class="page-header">
+				<h1>Confirm <small></small></h1>
+			</div>
+			<pre>uibDialog.confirm(message, [config])</pre>
+			<p>Use this for a confirmation prompt.</p>
+			<button class="btn btn-primary" ng-click="confirm('Please Confirm!')">Confirm</button>
+		</div>
+		<div class="col-sm-7">
+			<div class="page-header">
+				<h1>Prompt <small></small></h1>
+			</div>
+			<pre>uibDialog.prompt(message, [config])</pre>
+			<p>Use this for a prompt for some text.</p>
+			<button class="btn btn-primary" ng-click="prompt('What is your name?')">Prompt</button>
+		</div>
+		<div class="col-sm-7">
+			<div class="page-header">
+				<h1>Prompt Box <small></small></h1>
+			</div>
+			<pre>uibDialog.promptBox(message, [config])</pre>
+			<p>Use this for a prompt for some text using textarea for multiline.</p>
+			<button class="btn btn-primary" ng-click="promptBox('Whats on your mind?')">Prompt Box</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="page-header">
+				<h1>Config <small></small></h1>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<p>This object can be passed in as the second parameter of any of these calls to change various configurations of the message such as button text, size, etc., and will only be applied to that instance of the dialog.</p>
+			<pre>uibDialog.alert(message, config)</pre>
+			<textarea type="text" class="form-control" ng-model="config"></textarea>
+			<p>Contrarily, an identical object can be passed into a call to change the global configuration of all dialogs in the app.</p>
+			<pre>uibDialog.config(config)</pre>
+			<textarea type="text" class="form-control" ng-model="gConfig"></textarea>
+			<button class="btn btn-primary" ng-click="setConfig(gConfig)">Set Config</button>
+			<p>Each of the configurations can be set at a global level to affect every type of message, or they can be set in a nested object within the configuration object which has the key of the message type, 
+			i.e. to set the 'OK' button text for <strong>only</strong> the confirm dialogs to 'Yes', 
+			<pre>uibDialog.config({confirm:{ok: 'Yes'}})</pre>
+			</p>
+		</div>
+		<div class="col-sm-6">
+			<h4>config parameter</h4>
+			<ul>
+				<li><p><code>animation</code> (Type: <code>boolean</code>, Default: <code>true</code>) - Set to false to disable animations on new modal/backdrop. Does not toggle animations for modals/backdrops that are already displayed.</p></li>
+				<li><p><code>backdrop</code> (Type: <code>boolean|string</code>, Default: <code>true</code>) - Controls presence of a backdrop. Allowed values: <code>true</code> (default), <code>false</code> (no backdrop), <code>'static'</code> (disables modal closing by click on the backdrop).</p></li>
+				<li><p><code>size</code> (Type: <code>string</code>, Example: <code>'lg'</code>) - Optional suffix of modal window class. The value used is appended to the <code>modal-</code> class, i.e. a value of <code>sm</code> gives <code>modal-sm</code>.</p></li>
+				<li><p><code>keyboard</code> (Type: <code>boolean</code>, Default: <code>true</code>) - Indicates whether the dialog should be closable by hitting the ESC key.</p></li>
+				<li><p><code>close</code> (Type: <code>boolean</code>, Default: <code>true</code>) - Indicates whether the dialog should display the close icon in the top-right corner, which can be pressed to <i>dismiss</i> the modal, triggering the error function of the promise.</p></li>
+				<li><p><code>ok</code> (Type: <code>boolean|string</code>, Default: <code>'OK'</code>) - When the value is a <code>boolean</code>, controls presence of the 'OK' button, which can be pressed to <i>close</i> the modal, triggering the success function of the promise.  When the value is a <code>string</code>, controls the button text.</p></li>
+				<li><p><code>cancel</code> (Type: <code>boolean|string</code>, Default: <code>'Cancel'</code>) - When the value is a <code>boolean</code>, controls presence of the 'Cancel' button, which can be pressed to <i>dismiss</i> the modal, triggering the error function of the promise.  When the value is a <code>string</code>, controls the button text.</p></li>
+				<li><p><code>autoclose</code> (Type: <code>boolean|number</code>, Default: <code>false</code>) - Controls the time until the modal dismisses on its own.  If <code>false</code>, modal never dismisses on its own.</p></li>
+				<li><p><code>html</code> (Type: <code>boolean</code>, Default: <code>true</code> if ngSanitize is included, otherwise <code>false</code>) - Controls whether or not to allow html to be passed in as either the message value or any configurations.  <span class="text-warning">ngSanitize module is required for ng-bind-html to be used, so this will throw an error when the config is set to <code>true</code>, and this module is not included in the index.</span></p></li>
+			</ul>
+		</div>
+	</div><!-- /.row -->
+</div><!-- /.container -->
+    
+<noscript>
+	<h1>Please enable javascript!</h1>
+</noscript>
+</body>
+</html>
