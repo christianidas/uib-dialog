@@ -142,111 +142,90 @@
       var tempConfig = mergeObject(config, config.alert);
       tempConfig = mergeObject(tempConfig, singleConfig);
       if (typeof singleConfig === 'boolean') { tempConfig.danger = singleConfig; }
-      var modalInstance = $modal.open({
-          animation: tempConfig.animation,
-          template: tempConfig.html ? template.replace(/ng-bind/g, 'ng-bind-html') : template,
-          controller: 'UibDialogController',
-          size: tempConfig.size,
-          backdrop: tempConfig.backdrop,
-          keyboard: tempConfig.keyboard,
-          resolve: {
-              message: function(){
-                return message;
-              },
-              config: function(){
-                  return tempConfig;
-              }
+      tempConfig.template = tempConfig.template || (tempConfig.html ? template.replace(/ng-bind/g, 'ng-bind-html') : template);
+      tempConfig.controller = tempConfig.controller || 'UibDialogController';
+      tempConfig.resolve = mergeObject({
+          message: function(){
+            return message;
+          },
+          config: function(){
+              return tempConfig;
           }
-      });
+      }, tempConfig.resolve);
+      var modalInstance = $modal.open(tempConfig);
       return modalInstance.result;
     };
+
     this.autoCloseAlert = function(message, singleConfig){
       var tempConfig = mergeObject(config, config.autoCloseAlert);
       tempConfig = mergeObject(tempConfig, singleConfig);
       if (typeof singleConfig === 'boolean') { tempConfig.danger = singleConfig; }
       else if (typeof singleConfig === 'number') { tempConfig.autoclose = singleConfig; }
-      var modalInstance = $modal.open({
-          animation: tempConfig.animation,
-          template: tempConfig.html ? template.replace(/ng-bind/g, 'ng-bind-html') : template,
-          controller: 'UibDialogController',
-          size: tempConfig.size,
-          backdrop: tempConfig.backdrop,
-          keyboard: tempConfig.keyboard,
-          resolve: {
-              message: function(){
-                return message;
-              },
-              config: function(){
-                return tempConfig;
-              }
+      tempConfig.template = tempConfig.template || (tempConfig.html ? template.replace(/ng-bind/g, 'ng-bind-html') : template);
+      tempConfig.controller = tempConfig.controller || 'UibDialogController';
+      tempConfig.resolve = mergeObject({
+          message: function(){
+            return message;
+          },
+          config: function(){
+              return tempConfig;
           }
-      });
+      }, tempConfig.resolve);
+      var modalInstance = $modal.open(tempConfig);
       return modalInstance.result;
     };
+
     this.confirm = function(message, singleConfig){
       var tempConfig = mergeObject(config, config.confirm);
       tempConfig = mergeObject(tempConfig, singleConfig);
       if (typeof singleConfig === 'boolean') { tempConfig.danger = singleConfig; }
-      var modalInstance = $modal.open({
-          animation: tempConfig.animation,
-          template: tempConfig.html ? template.replace(/ng-bind/g, 'ng-bind-html') : template,
-          controller: 'UibDialogController',
-          size: tempConfig.size,
-          backdrop: tempConfig.backdrop,
-          keyboard: tempConfig.keyboard,
-          resolve: {
-              message: function(){
-                return message;
-              },
-              config: function(){
-                return tempConfig;
-              }
+      tempConfig.template = tempConfig.template || (tempConfig.html ? template.replace(/ng-bind/g, 'ng-bind-html') : template);
+      tempConfig.controller = tempConfig.controller || 'UibDialogController';
+      tempConfig.resolve = mergeObject({
+          message: function(){
+            return message;
+          },
+          config: function(){
+              return tempConfig;
           }
-      });
+      }, tempConfig.resolve);
+      var modalInstance = $modal.open(tempConfig);
       return modalInstance.result;
     };
+
     this.prompt = function(message, singleConfig){
       var tempConfig = mergeObject(config, config.prompt);
       tempConfig = mergeObject(tempConfig, singleConfig);
       if (typeof singleConfig === 'boolean') { tempConfig.danger = singleConfig; }
-      var modalInstance = $modal.open({
-          animation: tempConfig.animation,
-          template: tempConfig.html ? templateInput.replace(/ng-bind/g, 'ng-bind-html') : templateInput,
-          controller: 'UibDialogController',
-          size: tempConfig.size,
-          backdrop: tempConfig.backdrop,
-          keyboard: tempConfig.keyboard,
-          resolve: {
-              message: function(){
-                return message;
-              },
-              config: function(){
-                return tempConfig;
-              }
+      tempConfig.template = tempConfig.template || (tempConfig.html ? templateInput.replace(/ng-bind/g, 'ng-bind-html') : templateInput);
+      tempConfig.controller = tempConfig.controller || 'UibDialogController';
+      tempConfig.resolve = mergeObject({
+          message: function(){
+            return message;
+          },
+          config: function(){
+              return tempConfig;
           }
-      });
+      }, tempConfig.resolve);
+      var modalInstance = $modal.open(tempConfig);
       return modalInstance.result;
     };
+    
     this.promptBox = function(message, singleConfig){
       var tempConfig = mergeObject(config, config.promptBox);
       tempConfig = mergeObject(tempConfig, singleConfig);
       if (typeof singleConfig === 'boolean') { tempConfig.danger = singleConfig; }
-      var modalInstance = $modal.open({
-          animation: tempConfig.animation,
-          template: tempConfig.html ? templateTextarea.replace(/ng-bind/g, 'ng-bind-html') : templateTextarea,
-          controller: 'UibDialogController',
-          size: tempConfig.size,
-          backdrop: tempConfig.backdrop,
-          keyboard: tempConfig.keyboard,
-          resolve: {
-              message: function(){
-                return message;
-              },
-              config: function(){
-                return tempConfig;
-              }
+      tempConfig.template = tempConfig.template || (tempConfig.html ? templateTextarea.replace(/ng-bind/g, 'ng-bind-html') : templateTextarea);
+      tempConfig.controller = tempConfig.controller || 'UibDialogController';
+      tempConfig.resolve = mergeObject({
+          message: function(){
+            return message;
+          },
+          config: function(){
+              return tempConfig;
           }
-      });
+      }, tempConfig.resolve);
+      var modalInstance = $modal.open(tempConfig);
       return modalInstance.result;
     };
 
